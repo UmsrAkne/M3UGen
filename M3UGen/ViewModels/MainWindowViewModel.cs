@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using M3UGen.Models;
 using Prism.Mvvm;
 
 namespace M3UGen.ViewModels
@@ -10,11 +11,11 @@ namespace M3UGen.ViewModels
     {
         private string title = "Prism Application";
 
-        private ObservableCollection<FileInfo> files = new ObservableCollection<FileInfo>();
+        private ObservableCollection<ExtendFileInfo> files = new ObservableCollection<ExtendFileInfo>();
 
         public string Title { get => title; set => SetProperty(ref title, value); }
 
-        public ObservableCollection<FileInfo> Files
+        public ObservableCollection<ExtendFileInfo> Files
         {
             get => files;
             set => SetProperty(ref files, value);
@@ -24,7 +25,7 @@ namespace M3UGen.ViewModels
         {
             foreach (FileInfo f in fileInfoList)
             {
-                Files.Add(f);
+                Files.Add(new ExtendFileInfo(f));
             }
         }
     }

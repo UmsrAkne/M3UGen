@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-    xmlns:io="clr-namespace:System.IO;assembly=System.Runtime"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:M3UGen.Models"
     xmlns:prism="http://prismlibrary.com/"
@@ -36,8 +35,8 @@
 
             <ListView Background="{StaticResource BgColorBrush}" ItemsSource="{Binding Files}">
                 <ListView.ItemTemplate>
-                    <DataTemplate DataType="{x:Type io:FileInfo}">
-                        <TextBlock Foreground="{StaticResource FgColorBrush}" Text="{Binding FullName}" />
+                    <DataTemplate DataType="{x:Type models:ExtendFileInfo}">
+                        <TextBlock Foreground="{StaticResource FgColorBrush}" Text="{Binding FullPath}" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
