@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using Prism.Mvvm;
 
@@ -20,7 +21,11 @@ namespace M3UGen.Models
         {
             get
             {
-                return string.Empty;
+                Uri u1 = new Uri(BaseOfRelativePath);
+                Uri u2 = new Uri(FullPath);
+
+                Uri relativeUri = u1.MakeRelativeUri(u2);
+                return relativeUri.ToString().Replace('/', '\\');
             }
         }
 
