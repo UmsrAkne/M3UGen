@@ -102,6 +102,32 @@
                     IsEnabled="{Binding RelativePathMode}"
                     Text="{Binding BaseDirectoryPath}" />
             </Grid>
+
+            <Border
+                Height="1"
+                Margin="0,0,0,10"
+                Background="{StaticResource FgColorBrush}" />
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource CommonTextBlockStyle}" Text="出力オプション" />
+            </StackPanel>
+
+            <StackPanel Margin="0,10" Orientation="Horizontal">
+                <CheckBox
+                    Margin="8,0"
+                    VerticalAlignment="Center"
+                    IsChecked="{Binding Exporter.ContainsCommentLine}" />
+
+                <TextBlock Style="{StaticResource CommonTextBlockStyle}" Text="コメントアウトを含めて出力" />
+            </StackPanel>
+
+            <Button
+                Width="150"
+                HorizontalAlignment="Right"
+                Command="{Binding ExportToClipBoardCommand}">
+                <TextBlock FontSize="{StaticResource FontSize}" Text="Export ( Ctrl + C )" />
+            </Button>
+
         </StackPanel>
 
     </Grid>

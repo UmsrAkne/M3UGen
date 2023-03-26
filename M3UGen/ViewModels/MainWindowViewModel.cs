@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
+using System.Windows;
 using M3UGen.Models;
+using Prism.Commands;
 using Prism.Mvvm;
 
 namespace M3UGen.ViewModels
@@ -55,6 +58,13 @@ namespace M3UGen.ViewModels
             get => files;
             set => SetProperty(ref files, value);
         }
+
+        public Exporter Exporter { get; } = new Exporter();
+
+        public DelegateCommand ExportToClipBoardCommand => new DelegateCommand(() =>
+        {
+            Clipboard.SetDataObject(Exporter.Export(Files.ToList()));
+        });
 
         public void AddFiles(IEnumerable<FileInfo> fileInfoList)
         {
