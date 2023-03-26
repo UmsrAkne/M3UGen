@@ -52,6 +52,15 @@
                 <DataTemplate DataType="{x:Type models:ExtendFileInfo}">
 
                     <StackPanel Orientation="Horizontal">
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsCommentOut}" Value="True">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
 
                         <Border Width="{StaticResource CheckBoxColumnWidth}" HorizontalAlignment="Center">
                             <CheckBox
