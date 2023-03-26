@@ -9,6 +9,8 @@
         <SolidColorBrush x:Key="FgColorBrush" Color="WhiteSmoke" />
         <system:Double x:Key="FontSize">15.0</system:Double>
 
+        <system:Double x:Key="CheckBoxColumnWidth">50</system:Double>
+
         <Style x:Key="CommonTextBlockStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="{StaticResource FgColorBrush}" />
             <Setter Property="FontSize" Value="{StaticResource FontSize}" />

@@ -30,7 +30,19 @@
 
         <ContentControl prism:RegionManager.RegionName="ContentRegion" />
 
-        <Menu Grid.Row="0" />
+        <StackPanel Grid.Row="0">
+
+            <Menu />
+            <StackPanel Margin="8,0" Orientation="Horizontal">
+                <TextBlock
+                    Width="{StaticResource CheckBoxColumnWidth}"
+                    Style="{StaticResource CommonTextBlockStyle}"
+                    Text="#"
+                    TextAlignment="Center" />
+
+                <TextBlock Style="{StaticResource CommonTextBlockStyle}" Text="Path" />
+            </StackPanel>
+        </StackPanel>
 
         <ListView
             Grid.Row="1"
@@ -38,7 +50,18 @@
             ItemsSource="{Binding Files}">
             <ListView.ItemTemplate>
                 <DataTemplate DataType="{x:Type models:ExtendFileInfo}">
-                    <TextBlock Foreground="{StaticResource FgColorBrush}" Text="{Binding DisplayName}" />
+
+                    <StackPanel Orientation="Horizontal">
+
+                        <Border Width="{StaticResource CheckBoxColumnWidth}" HorizontalAlignment="Center">
+                            <CheckBox
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                IsChecked="{Binding IsCommentOut}" />
+                        </Border>
+
+                        <TextBlock Style="{StaticResource CommonTextBlockStyle}" Text="{Binding DisplayName}" />
+                    </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

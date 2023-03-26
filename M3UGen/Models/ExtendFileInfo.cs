@@ -9,6 +9,7 @@ namespace M3UGen.Models
         private string baseOfRelativePath = new FileInfo("/").FullName;
         private bool displayingRelativePath;
         private string displayName = string.Empty;
+        private bool isCommentOut;
 
         public ExtendFileInfo(FileInfo fi)
         {
@@ -53,6 +54,8 @@ namespace M3UGen.Models
                 DisplayName = value ? RelativePath : FileInfo.FullName;
             }
         }
+
+        public bool IsCommentOut { get => isCommentOut; set => SetProperty(ref isCommentOut, value); }
 
         private FileInfo FileInfo { get; set; }
     }
