@@ -24,6 +24,11 @@ namespace M3UGen.Models
                     continue;
                 }
 
+                if (f.IsCommentOut)
+                {
+                    sb.Append("# ");
+                }
+
                 sb.AppendLine($"\"{f.DisplayName}\"");
             }
 
