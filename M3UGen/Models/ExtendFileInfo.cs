@@ -13,17 +13,13 @@ namespace M3UGen.Models
         public ExtendFileInfo(FileInfo fi)
         {
             FileInfo = fi;
-            DisplayName = FullPath;
+            DisplayName = FileInfo.FullName;
         }
-
-        private FileInfo FileInfo { get; set; }
-
-        private string FullPath => FileInfo.FullName;
 
         public string DisplayName
         {
             get => displayName;
-            set => SetProperty(ref displayName, value);
+            private set => SetProperty(ref displayName, value);
         }
 
         public string RelativePath
@@ -31,7 +27,7 @@ namespace M3UGen.Models
             get
             {
                 Uri u1 = new Uri(BaseOfRelativePath);
-                Uri u2 = new Uri(FullPath);
+                Uri u2 = new Uri(FileInfo.FullName);
 
                 Uri relativeUri = u1.MakeRelativeUri(u2);
                 return relativeUri.ToString().Replace('/', '\\');
@@ -54,8 +50,10 @@ namespace M3UGen.Models
             set
             {
                 SetProperty(ref displayingRelativePath, value);
-                DisplayName = value ? RelativePath : FullPath;
+                DisplayName = value ? RelativePath : FileInfo.FullName;
             }
         }
+
+        private FileInfo FileInfo { get; set; }
     }
 }
