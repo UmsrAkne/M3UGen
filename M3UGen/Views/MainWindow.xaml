@@ -25,23 +25,110 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <ContentControl prism:RegionManager.RegionName="ContentRegion" />
 
-        <Menu Grid.Row="0" />
+        <StackPanel Grid.Row="0">
 
-        <DockPanel Grid.Row="1">
+            <Menu />
+            <StackPanel Margin="8,0" Orientation="Horizontal">
+                <TextBlock
+                    Width="{StaticResource CheckBoxColumnWidth}"
+                    Style="{StaticResource CommonTextBlockStyle}"
+                    Text="#"
+                    TextAlignment="Center" />
 
-            <ListView Background="{StaticResource BgColorBrush}" ItemsSource="{Binding Files}">
-                <ListView.ItemTemplate>
-                    <DataTemplate DataType="{x:Type models:ExtendFileInfo}">
-                        <TextBlock Foreground="{StaticResource FgColorBrush}" Text="{Binding FullPath}" />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                <TextBlock Style="{StaticResource CommonTextBlockStyle}" Text="Path" />
+            </StackPanel>
+        </StackPanel>
 
-        </DockPanel>
+        <ListView
+            Grid.Row="1"
+            Background="{StaticResource BgColorBrush}"
+            ItemsSource="{Binding Files}">
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="{x:Type models:ExtendFileInfo}">
+
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsCommentOut}" Value="True">
+                                        <Setter Property="Opacity" Value="0.4" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+
+                        <Border Width="{StaticResource CheckBoxColumnWidth}" HorizontalAlignment="Center">
+                            <CheckBox
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                IsChecked="{Binding IsCommentOut}" />
+                        </Border>
+
+                        <TextBlock Style="{StaticResource CommonTextBlockStyle}" Text="{Binding DisplayName}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackPanel Grid.Row="2" Margin="5,10">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox
+                    Margin="8,0"
+                    VerticalAlignment="Center"
+                    IsChecked="{Binding RelativePathMode}" />
+
+                <TextBlock Style="{StaticResource CommonTextBlockStyle}" Text="相対パスで表示する" />
+            </StackPanel>
+
+            <Grid Margin="0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock
+                    Margin="10,0"
+                    Style="{StaticResource CommonTextBlockStyle}"
+                    Text="相対パスのベースパス :" />
+
+                <TextBox
+                    Grid.Column="1"
+                    Margin="10,0"
+                    IsEnabled="{Binding RelativePathMode}"
+                    Text="{Binding BaseDirectoryPath}" />
+            </Grid>
+
+            <Border
+                Height="1"
+                Margin="0,0,0,10"
+                Background="{StaticResource FgColorBrush}" />
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource CommonTextBlockStyle}" Text="出力オプション" />
+            </StackPanel>
+
+            <StackPanel Margin="0,10" Orientation="Horizontal">
+                <CheckBox
+                    Margin="8,0"
+                    VerticalAlignment="Center"
+                    IsChecked="{Binding Exporter.ContainsCommentLine}" />
+
+                <TextBlock Style="{StaticResource CommonTextBlockStyle}" Text="コメントアウトを含めて出力" />
+            </StackPanel>
+
+            <Button
+                Width="150"
+                HorizontalAlignment="Right"
+                Command="{Binding ExportToClipBoardCommand}">
+                <TextBlock FontSize="{StaticResource FontSize}" Text="Export ( Ctrl + C )" />
+            </Button>
+
+        </StackPanel>
 
     </Grid>
 </Window>
