@@ -25,23 +25,44 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <ContentControl prism:RegionManager.RegionName="ContentRegion" />
 
         <Menu Grid.Row="0" />
 
-        <DockPanel Grid.Row="1">
+        <ListView
+            Grid.Row="1"
+            Background="{StaticResource BgColorBrush}"
+            ItemsSource="{Binding Files}">
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="{x:Type models:ExtendFileInfo}">
+                    <TextBlock Foreground="{StaticResource FgColorBrush}" Text="{Binding FullPath}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
-            <ListView Background="{StaticResource BgColorBrush}" ItemsSource="{Binding Files}">
-                <ListView.ItemTemplate>
-                    <DataTemplate DataType="{x:Type models:ExtendFileInfo}">
-                        <TextBlock Foreground="{StaticResource FgColorBrush}" Text="{Binding FullPath}" />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+        <StackPanel Grid.Row="2" Margin="5,10">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Margin="8,0" VerticalAlignment="Center" />
+                <TextBlock Style="{StaticResource CommonTextBlockStyle}" Text="相対パスで表示する" />
+            </StackPanel>
 
-        </DockPanel>
+            <Grid Margin="0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock
+                    Margin="10,0"
+                    Style="{StaticResource CommonTextBlockStyle}"
+                    Text="相対パスのベースパス :" />
+
+                <TextBox Grid.Column="1" Margin="10,0" />
+            </Grid>
+        </StackPanel>
 
     </Grid>
 </Window>
