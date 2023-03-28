@@ -39,7 +39,18 @@
 
         <StackPanel Grid.Row="0">
 
-            <Menu />
+            <Menu>
+                <Menu.Resources>
+                    <Style TargetType="MenuItem">
+                        <Setter Property="FontSize" Value="{StaticResource FontSize}" />
+                    </Style>
+                </Menu.Resources>
+
+                <MenuItem Header="Edit">
+                    <MenuItem Command="{Binding ResetListCommand}" Header="リセット" />
+                </MenuItem>
+            </Menu>
+
             <StackPanel Margin="8,0" Orientation="Horizontal">
                 <TextBlock
                     Width="{StaticResource CheckBoxColumnWidth}"

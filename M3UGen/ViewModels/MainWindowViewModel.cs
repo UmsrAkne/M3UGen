@@ -66,6 +66,11 @@ namespace M3UGen.ViewModels
             Clipboard.SetDataObject(Exporter.Export(Files.ToList()));
         });
 
+        public DelegateCommand ResetListCommand => new DelegateCommand(() =>
+        {
+            Files.Clear();
+        });
+
         public void AddFiles(IEnumerable<FileInfo> fileInfoList)
         {
             foreach (FileInfo f in fileInfoList)
