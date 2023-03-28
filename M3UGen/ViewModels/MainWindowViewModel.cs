@@ -12,8 +12,6 @@ namespace M3UGen.ViewModels
     // ReSharper disable once ClassNeverInstantiated.Global
     public class MainWindowViewModel : BindableBase
     {
-        private string title = "Prism Application";
-
         private ObservableCollection<ExtendFileInfo> files = new ObservableCollection<ExtendFileInfo>();
         private bool relativePathMode;
         private string baseDirectoryPath = new FileInfo("/").FullName;
@@ -22,8 +20,6 @@ namespace M3UGen.ViewModels
         {
             RelativePathMode = true;
         }
-
-        public string Title { get => title; set => SetProperty(ref title, value); }
 
         public bool RelativePathMode
         {
