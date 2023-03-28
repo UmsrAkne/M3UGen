@@ -8,7 +8,7 @@
     xmlns:models="clr-namespace:M3UGen.Models"
     xmlns:prism="http://prismlibrary.com/"
     xmlns:viewModels="clr-namespace:M3UGen.ViewModels"
-    Title="{Binding Title}"
+    Title="M3U Generator"
     Width="800"
     Height="600"
     d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel}"
@@ -21,6 +21,13 @@
         <models:DropBehavior />
     </i:Interaction.Behaviors>
 
+    <Window.InputBindings>
+        <KeyBinding
+            Key="C"
+            Command="{Binding ExportToClipBoardCommand}"
+            Modifiers="Control" />
+    </Window.InputBindings>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -32,7 +39,18 @@
 
         <StackPanel Grid.Row="0">
 
-            <Menu />
+            <Menu>
+                <Menu.Resources>
+                    <Style TargetType="MenuItem">
+                        <Setter Property="FontSize" Value="{StaticResource FontSize}" />
+                    </Style>
+                </Menu.Resources>
+
+                <MenuItem Header="Edit">
+                    <MenuItem Command="{Binding ResetListCommand}" Header="リセット" />
+                </MenuItem>
+            </Menu>
+
             <StackPanel Margin="8,0" Orientation="Horizontal">
                 <TextBlock
                     Width="{StaticResource CheckBoxColumnWidth}"

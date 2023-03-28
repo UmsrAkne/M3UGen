@@ -7,7 +7,7 @@
     <Application.Resources>
         <SolidColorBrush x:Key="BgColorBrush" Color="#333333" />
         <SolidColorBrush x:Key="FgColorBrush" Color="WhiteSmoke" />
-        <system:Double x:Key="FontSize">15.0</system:Double>
+        <system:Double x:Key="FontSize">14.0</system:Double>
 
         <system:Double x:Key="CheckBoxColumnWidth">50</system:Double>
 
