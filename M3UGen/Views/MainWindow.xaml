@@ -21,6 +21,13 @@
         <models:DropBehavior />
     </i:Interaction.Behaviors>
 
+    <Window.InputBindings>
+        <KeyBinding
+            Key="C"
+            Command="{Binding ExportToClipBoardCommand}"
+            Modifiers="Control" />
+    </Window.InputBindings>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
