@@ -27,6 +27,12 @@ namespace M3UGen.Models
         {
             get
             {
+                var baseDirectoryInfo = new DirectoryInfo(BaseOfRelativePath);
+                if (baseDirectoryInfo.Root.ToString() != FileInfo.Directory?.Root.ToString())
+                {
+                    return "# Error";
+                }
+
                 Uri u1 = new Uri(BaseOfRelativePath);
                 Uri u2 = new Uri(FileInfo.FullName);
 
