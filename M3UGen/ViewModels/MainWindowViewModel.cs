@@ -40,6 +40,11 @@ namespace M3UGen.ViewModels
             get => baseDirectoryPath;
             set
             {
+                if (!value.EndsWith(@"\"))
+                {
+                    value += @"\";
+                }
+
                 SetProperty(ref baseDirectoryPath, value);
 
                 foreach (ExtendFileInfo extendFileInfo in Files)

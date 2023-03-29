@@ -7,11 +7,18 @@ namespace M3UGen.Models
     public class Exporter : BindableBase
     {
         private bool containsCommentLine = true;
+        private bool quoteAddition;
 
         public bool ContainsCommentLine
         {
             get => containsCommentLine;
             set => SetProperty(ref containsCommentLine, value);
+        }
+
+        public bool QuoteAddition
+        {
+            get => quoteAddition;
+            set => SetProperty(ref quoteAddition, value);
         }
 
         public string Export(IEnumerable<ExtendFileInfo> extendFileInfos)
@@ -29,7 +36,14 @@ namespace M3UGen.Models
                     sb.Append("# ");
                 }
 
-                sb.AppendLine($"\"{f.DisplayName}\"");
+                if (QuoteAddition)
+                {
+                    sb.AppendLine($"\"{f.DisplayName}\"");
+                }
+                else
+                {
+                    sb.AppendLine($"{f.DisplayName}");
+                }
             }
 
             return sb.ToString();

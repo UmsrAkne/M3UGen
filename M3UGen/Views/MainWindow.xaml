@@ -137,13 +137,22 @@
                     IsChecked="{Binding Exporter.ContainsCommentLine}" />
 
                 <TextBlock Style="{StaticResource CommonTextBlockStyle}" Text="コメントアウトを含めて出力" />
+
+                <Border Width="0" Margin="20,0" />
+
+                <CheckBox
+                    Margin="8,0"
+                    VerticalAlignment="Center"
+                    IsChecked="{Binding Exporter.QuoteAddition}" />
+
+                <TextBlock Style="{StaticResource CommonTextBlockStyle}" Text="ダブルクォートを付加する" />
             </StackPanel>
 
             <Button
                 Width="150"
                 HorizontalAlignment="Right"
                 Command="{Binding ExportToClipBoardCommand}">
-                <TextBlock FontSize="{StaticResource FontSize}" Text="Export ( Ctrl + C )" />
+                <TextBlock FontSize="{StaticResource FontSize}" Text="Copy ( Ctrl + C )" />
             </Button>
 
         </StackPanel>
