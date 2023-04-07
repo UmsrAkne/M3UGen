@@ -63,6 +63,8 @@ namespace M3UGen.Models
 
         public bool IsCommentOut { get => isCommentOut; set => SetProperty(ref isCommentOut, value); }
 
+        public int Index { get; set; }
+
         private FileInfo FileInfo { get; set; }
     }
 }

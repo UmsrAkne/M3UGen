@@ -9,6 +9,7 @@
         <SolidColorBrush x:Key="FgColorBrush" Color="WhiteSmoke" />
         <system:Double x:Key="FontSize">14.0</system:Double>
 
+        <system:Double x:Key="IndexColumnWidth">35</system:Double>
         <system:Double x:Key="CheckBoxColumnWidth">50</system:Double>
 
         <Style x:Key="CommonTextBlockStyle" TargetType="TextBlock">

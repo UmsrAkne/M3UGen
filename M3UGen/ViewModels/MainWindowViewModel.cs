@@ -74,12 +74,14 @@ namespace M3UGen.ViewModels
 
         public void AddFiles(IEnumerable<FileInfo> fileInfoList)
         {
+            int index = 0;
             foreach (FileInfo f in fileInfoList)
             {
                 Files.Add(new ExtendFileInfo(f)
                 {
                     BaseOfRelativePath = BaseDirectoryPath,
                     DisplayingRelativePath = RelativePathMode,
+                    Index = ++index,
                 });
             }
         }

@@ -53,6 +53,11 @@
 
             <StackPanel Margin="8,0" Orientation="Horizontal">
                 <TextBlock
+                    Width="{StaticResource IndexColumnWidth}"
+                    Style="{StaticResource CommonTextBlockStyle}"
+                    Text="Index" />
+
+                <TextBlock
                     Width="{StaticResource CheckBoxColumnWidth}"
                     Style="{StaticResource CommonTextBlockStyle}"
                     Text="#"
@@ -79,6 +84,10 @@
                                 </Style.Triggers>
                             </Style>
                         </StackPanel.Style>
+
+                        <Border Width="{StaticResource IndexColumnWidth}" HorizontalAlignment="Center">
+                            <TextBlock Style="{StaticResource CommonTextBlockStyle}" Text="{Binding Index}" />
+                        </Border>
 
                         <Border Width="{StaticResource CheckBoxColumnWidth}" HorizontalAlignment="Center">
                             <CheckBox
