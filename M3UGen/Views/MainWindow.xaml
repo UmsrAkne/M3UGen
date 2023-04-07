@@ -160,9 +160,9 @@
             <Button
                 Width="150"
                 HorizontalAlignment="Right"
-                Command="{Binding ExportToClipBoardCommand}">
-                <TextBlock FontSize="{StaticResource FontSize}" Text="Copy ( Ctrl + C )" />
-            </Button>
+                Command="{Binding ExportToClipBoardCommand}"
+                Content="Copy ( Ctrl + C )"
+                Template="{StaticResource ButtonControlTemplate}" />
 
         </StackPanel>
 
