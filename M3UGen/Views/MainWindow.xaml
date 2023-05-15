@@ -157,13 +157,23 @@
                 <TextBlock Style="{StaticResource CommonTextBlockStyle}" Text="ダブルクォートを付加する" />
             </StackPanel>
 
-            <Button
-                Width="150"
-                HorizontalAlignment="Right"
-                Command="{Binding ExportToClipBoardCommand}"
-                Content="Copy ( Ctrl + C )"
-                Template="{StaticResource ButtonControlTemplate}" />
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
 
+                <Button
+                    Width="150"
+                    Command="{Binding ExportToClipBoardCommand}"
+                    Content="Copy ( Ctrl + C )"
+                    Template="{StaticResource ButtonControlTemplate}" />
+
+                <Border Width="0" Margin="5,0" />
+
+                <Button
+                    Width="150"
+                    Command="{Binding ExportToM3UFileCommand}"
+                    Content="Export M3U"
+                    Template="{StaticResource ButtonControlTemplate}" />
+
+            </StackPanel>
         </StackPanel>
 
     </Grid>

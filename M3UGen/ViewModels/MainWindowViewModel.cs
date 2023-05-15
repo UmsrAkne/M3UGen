@@ -15,6 +15,7 @@ namespace M3UGen.ViewModels
         private ObservableCollection<ExtendFileInfo> files = new ObservableCollection<ExtendFileInfo>();
         private bool relativePathMode;
         private string baseDirectoryPath = new FileInfo("/").FullName;
+        private string outputDestPath;
 
         public MainWindowViewModel()
         {
@@ -65,6 +66,13 @@ namespace M3UGen.ViewModels
         public DelegateCommand ExportToClipBoardCommand => new DelegateCommand(() =>
         {
             Clipboard.SetDataObject(Exporter.Export(Files.ToList()));
+        });
+
+        public DelegateCommand ExportToM3UFileCommand => new DelegateCommand(() =>
+        {
+            var directoryName = Files.FirstOrDefault()?.DirectoryName;
+            using var sw = File.CreateText($@"{BaseDirectoryPath}\{directoryName}.m3u");
+            sw.Write(Exporter.Export(Files.ToList()));
         });
 
         public DelegateCommand ResetListCommand => new DelegateCommand(() =>
