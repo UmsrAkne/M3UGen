@@ -9,6 +9,34 @@ namespace M3UGen.Models
 {
     public class DropBehavior : Behavior<Window>
     {
+        public List<FileInfo> GetSoundFiles(string[] filePaths)
+        {
+            var fileInfos = new List<FileInfo>();
+
+            foreach (string p in filePaths)
+            {
+                if (string.IsNullOrWhiteSpace(p))
+                {
+                    continue;
+                }
+
+                if (Directory.Exists(p))
+                {
+                    fileInfos.AddRange(Directory.GetFiles(p).
+                        Where(IsSoundFile).
+                        Select(fp => new FileInfo(fp)));
+                }
+                else
+                {
+                    if (IsSoundFile(p))
+                    {
+                        fileInfos.Add(new FileInfo(p));
+                    }
+                }
+            }
+
+            return fileInfos;
+        }
 
         public bool IsSoundFile(string path)
         {
@@ -45,24 +73,7 @@ namespace M3UGen.Models
                 return;
             }
 
-            var fileInfos = new List<FileInfo>();
-
-            foreach (string p in files)
-            {
-                if (string.IsNullOrWhiteSpace(p))
-                {
-                    continue;
-                }
-
-                if (Directory.Exists(p))
-                {
-                    fileInfos.AddRange(Directory.GetFiles(p).Select(fp => new FileInfo(fp)));
-                }
-                else
-                {
-                    fileInfos.Add(new FileInfo(p));
-                }
-            }
+            var fileInfos = GetSoundFiles(files);
 
             if (sender is Window window)
             {

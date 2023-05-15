@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using M3UGen.Models;
 using NUnit.Framework;
 
@@ -5,6 +8,44 @@ namespace Tests.Models;
 
 public class DropBehaviorTest
 {
+    private string testDirectoryName = "testDirectoryName";
+
+    [SetUp]
+    public void TestSetUp()
+    {
+        Directory.CreateDirectory(testDirectoryName);
+        File.Create($@"{testDirectoryName}\a.mp3").Close();
+        File.Create($@"{testDirectoryName}\b.mp3").Close();
+        File.Create($@"{testDirectoryName}\c.mp3").Close();
+        File.Create($@"{testDirectoryName}\d.jpg").Close();
+    }
+
+    [TearDown]
+    public void TestTearDown()
+    {
+        File.Delete($@"{testDirectoryName}\a.mp3");
+        File.Delete($@"{testDirectoryName}\b.mp3");
+        File.Delete($@"{testDirectoryName}\c.mp3");
+        File.Delete($@"{testDirectoryName}\d.jpg");
+        Directory.Delete(testDirectoryName);
+    }
+
+    [Test]
+    public void GetSoundFilesTest()
+    {
+        var d = new DropBehavior();
+
+        var files = d.GetSoundFiles(new[] { testDirectoryName }).Select(p => p.ToString()).ToList();
+        var expectedPaths = new List<string>
+        {
+            $@"{testDirectoryName}\a.mp3",
+            $@"{testDirectoryName}\b.mp3",
+            $@"{testDirectoryName}\c.mp3",
+        };
+
+        CollectionAssert.AreEqual(expectedPaths, files);
+    }
+
     [Test]
     public void IsSoundFileTest()
     {
