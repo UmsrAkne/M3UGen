@@ -15,6 +15,7 @@ namespace M3UGen.ViewModels
         private ObservableCollection<ExtendFileInfo> files = new ObservableCollection<ExtendFileInfo>();
         private bool relativePathMode;
         private string baseDirectoryPath = new FileInfo("/").FullName;
+        private string outputDestPath;
 
         public MainWindowViewModel()
         {
