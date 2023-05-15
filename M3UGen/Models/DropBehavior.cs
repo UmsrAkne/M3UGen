@@ -9,6 +9,15 @@ namespace M3UGen.Models
 {
     public class DropBehavior : Behavior<Window>
     {
+
+        public bool IsSoundFile(string path)
+        {
+            return
+                Path.GetExtension(path).ToLower() == ".mp3" ||
+                Path.GetExtension(path).ToLower() == ".wav" ||
+                Path.GetExtension(path).ToLower() == ".ogg";
+        }
+
         protected override void OnAttached()
         {
             base.OnAttached();
