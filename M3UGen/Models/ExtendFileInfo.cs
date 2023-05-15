@@ -65,6 +65,14 @@ namespace M3UGen.Models
 
         public int Index { get; set; }
 
+        public string DirectoryName
+        {
+            get
+            {
+                return FileInfo is { Directory: not null } ? FileInfo.Directory.Name : string.Empty;
+            }
+        }
+
         private FileInfo FileInfo { get; set; }
     }
 }

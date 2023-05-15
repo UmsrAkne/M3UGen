@@ -67,6 +67,13 @@ namespace M3UGen.ViewModels
             Clipboard.SetDataObject(Exporter.Export(Files.ToList()));
         });
 
+        public DelegateCommand ExportToM3UFileCommand => new DelegateCommand(() =>
+        {
+            var directoryName = Files.FirstOrDefault()?.DirectoryName;
+            using var sw = File.CreateText($@"{BaseDirectoryPath}\{directoryName}.m3u");
+            sw.Write(Exporter.Export(Files.ToList()));
+        });
+
         public DelegateCommand ResetListCommand => new DelegateCommand(() =>
         {
             Files.Clear();
